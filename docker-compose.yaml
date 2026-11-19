@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:18
+    container_name: dispatch-db
+    environment:
+      POSTGRES_DB: dispatch
+      POSTGRES_USER: dispatch
+      POSTGRES_PASSWORD: dispatch
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - dispatch-pgdata:/var/lib/postgresql
+
+volumes:
+  dispatch-pgdata:

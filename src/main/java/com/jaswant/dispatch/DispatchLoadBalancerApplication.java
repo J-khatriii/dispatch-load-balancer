@@ -1,13 +1,15 @@
-package com.jaswant.dispatch_load_balancer;
+package com.jaswant.dispatch;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.TimeZone;
 
 @SpringBootApplication
 public class DispatchLoadBalancerApplication {
 
 	public static void main(String[] args) {
+		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 		SpringApplication.run(DispatchLoadBalancerApplication.class, args);
 	}
-
 }
