@@ -6,12 +6,14 @@ import com.jaswant.dispatch.domain.Route;
 import com.jaswant.dispatch.domain.UnassignedOrder;
 import com.jaswant.dispatch.domain.UnassignedReason;
 import com.jaswant.dispatch.domain.Vehicle;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class CheapestInsertionStrategy implements DispatchStrategy {
 
     // Heaviest-first within a priority packs vehicles tighter (first-fit-decreasing).
