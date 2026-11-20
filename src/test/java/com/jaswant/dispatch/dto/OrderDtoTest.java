@@ -79,4 +79,16 @@ class OrderDtoTest {
         var dto = order("ORD001", 12.9716, 77.5946, "MG Road, Bangalore", 10.0, null);
         assertThat(invalidFields(dto)).containsExactly("priority");
     }
+
+    @Test
+    void orderIdLongerThan64CharactersIsRejected() {
+        var dto = order("X".repeat(65), 12.9716, 77.5946, "MG Road, Bangalore", 10.0, Priority.HIGH);
+        assertThat(invalidFields(dto)).containsExactly("orderId");
+    }
+
+    @Test
+    void orderIdOfExactly64CharactersIsAccepted() {
+        var dto = order("X".repeat(64), 12.9716, 77.5946, "MG Road, Bangalore", 10.0, Priority.HIGH);
+        assertThat(invalidFields(dto)).isEmpty();
+    }
 }

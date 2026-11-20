@@ -70,4 +70,16 @@ class VehicleDtoTest {
         var dto = vehicle("VEH001", 100.0, 12.9716, longitude, "Indiranagar, Bangalore");
         assertThat(invalidFields(dto)).containsExactly("currentLongitude");
     }
+
+    @Test
+    void vehicleIdLongerThan64CharactersIsRejected() {
+        var dto = vehicle("X".repeat(65), 100.0, 12.9716, 77.6413, "Indiranagar, Bangalore");
+        assertThat(invalidFields(dto)).containsExactly("vehicleId");
+    }
+
+    @Test
+    void vehicleIdOfExactly64CharactersIsAccepted() {
+        var dto = vehicle("X".repeat(64), 100.0, 12.9716, 77.6413, "Indiranagar, Bangalore");
+        assertThat(invalidFields(dto)).isEmpty();
+    }
 }
